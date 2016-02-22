@@ -1,0 +1,10 @@
+target/
+data/
+.classpath
+.project
+*.swp
+.idea
+*.iml
+.mvn
+mvnw
+mvnw.cmd
