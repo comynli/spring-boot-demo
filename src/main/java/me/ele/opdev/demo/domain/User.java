@@ -2,26 +2,37 @@ package me.ele.opdev.demo.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Collection;
 
 /**
  * Created by xuemingli on 16/2/22.
  */
 
 @Entity
+@Table(name = "users")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true, length = 64)
     private String name;
 
-    @Column(nullable = true)
+    @Column(nullable = true, length = 512)
     private String mail;
 
     @Column(nullable = false)
     private Integer age;
+
+    @Column(nullable = true, length = 11)
+    private String mobile;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "group_user",
+            joinColumns = {@JoinColumn(name = "group_id")},
+            inverseJoinColumns = {@JoinColumn(name = "id")})
+    private Collection<Group> groups;
 
     protected User() {
     }
@@ -59,5 +70,29 @@ public class User {
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public Collection<Group> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(Collection<Group> groups) {
+        this.groups = groups;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

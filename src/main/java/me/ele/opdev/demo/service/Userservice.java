@@ -5,17 +5,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by xuemingli on 16/2/22.
  */
 
 @Service
-public class Userservice {
+@Transactional
+public class UserService {
     private final UserRepository userRepository;
 
     @Autowired
-    public Userservice(UserRepository userRepository) {
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -29,6 +31,14 @@ public class Userservice {
 
     public User save(User user) {
         return userRepository.save(user);
+    }
+
+    public Page<User> getU19(Pageable pageable) {
+        return userRepository.getU19(pageable);
+    }
+
+    public int updateAge(User user, int age) {
+        return userRepository.updateAge(user.getId(), age);
     }
 
 }
