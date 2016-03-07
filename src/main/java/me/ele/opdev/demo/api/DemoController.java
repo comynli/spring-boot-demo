@@ -1,6 +1,7 @@
 package me.ele.opdev.demo.api;
 
 import me.ele.opdev.demo.domain.User;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
  */
 
 @RestController
+@PreAuthorize("isAuthenticated()")
 public class DemoController {
 
     @RequestMapping(value = "/demo", produces = "application/json", method = RequestMethod.POST)

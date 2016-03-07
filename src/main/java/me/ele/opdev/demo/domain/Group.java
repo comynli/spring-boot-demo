@@ -20,6 +20,8 @@ public class Group {
     @Column(name = "[desc]", nullable = true)
     private String desc;
 
+
+
     protected Group() {
     }
 

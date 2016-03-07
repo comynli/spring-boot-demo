@@ -28,6 +28,9 @@ public class User {
     @Column(nullable = true, length = 11)
     private String mobile;
 
+    @Column(nullable = false)
+    private String password;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "group_user",
             joinColumns = {@JoinColumn(name = "group_id")},
@@ -94,5 +97,13 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
